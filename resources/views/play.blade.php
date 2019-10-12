@@ -8,6 +8,7 @@
     <option value="comics">Comics</option>
     </select>
     <button onclick="play(event, document.game.category.options[document.game.category.selectedIndex].value, document.getElementById('numero').textContent);">Gioca</button>
+    <button onclick="getPersonaggioMarvel(event)">PersonaggioRandom</button>
     </form>
     <div id="feedback"></div>
 </div>

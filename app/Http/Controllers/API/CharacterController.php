@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Character;
 
 class CharacterController extends Controller
 {
@@ -15,7 +16,7 @@ class CharacterController extends Controller
     public function index()
     {
         //
-        return 'x';
+        $char = new Character();
     }
 
     /**
@@ -27,6 +28,13 @@ class CharacterController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        $char = new Character();
+        $char->idMarvel = $input['idMarvel'];
+        $char->name = $input['name'];
+        $char->imgurl = $input['imgurl'];
+        $char->save();
+        return 'salvato';
     }
 
     /**
@@ -37,7 +45,8 @@ class CharacterController extends Controller
      */
     public function show($id)
     {
-        //
+        $char = Character::find($id);
+        return $char;
     }
 
     /**
@@ -50,6 +59,12 @@ class CharacterController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $char = Character::find($id);
+        $char->idMarvel = $input['idMarvel'] != "" ? $input['idMarvel'] : $char->idMarvel;
+        $char->name = $input['name'] != "" ? $input['name'] : $char->name;
+        $char->imgurl = $input['imgurl'] != "" ? $input['imgurl'] : $char->imgurl;
+        $char->save();
     }
 
     /**
@@ -60,6 +75,7 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $char = Character::find($id);
+        $char->delete();
     }
 }
