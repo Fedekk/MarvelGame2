@@ -16,7 +16,9 @@ class CharacterController extends Controller
     public function index()
     {
         //
-        $char = new Character();
+        $chars = Character::all()->toArray();
+        return view('personaggi')
+        ->with('chars', $chars);
     }
 
     /**

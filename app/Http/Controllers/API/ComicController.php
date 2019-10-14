@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Comic;
 
 class ComicController extends Controller
 {
@@ -15,6 +16,9 @@ class ComicController extends Controller
     public function index()
     {
         //
+        $comics = Comic::all()->toArray();
+        return view('comics')
+        ->with('comics',$comics);
     }
 
     /**
